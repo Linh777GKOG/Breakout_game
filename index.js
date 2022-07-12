@@ -164,3 +164,13 @@ function checkForCollisions() {
     document.removeEventListener('keydown', moveUser);
   }
 }
+
+function changeDirection() {
+  if (xDirection === 2 && yDirection === 2) {
+    yDirection = -2
+    return
+  }
+  if (xDirection === 2 && yDirection === -2) {
+    xDirection = -2
+    return
+  }
