@@ -112,3 +112,27 @@ function moveBall() {
   checkForCollisions();
 }
 timerId = setInterval(moveBall, 30);
+
+//check for collisions
+function checkForCollisions() {
+  //check for block collision
+  for (let i = 0; i < blocks.length; i++){
+    if
+    (
+      (ballCurrentPosition[0] > blocks[i].bottomLeft[0] && ballCurrentPosition[0] < blocks[i].bottomRight[0]) &&
+      ((ballCurrentPosition[1] + ballDiameter) > blocks[i].bottomLeft[1] && ballCurrentPosition[1] < blocks[i].topLeft[1]) 
+    )
+      {
+      const allBlocks = Array.from(document.querySelectorAll('.block'))
+      allBlocks[i].classList.remove('block')
+      blocks.splice(i,1)
+      changeDirection()   
+      score++
+      scoreDisplay.innerHTML = score
+      if (blocks.length == 0) {
+        scoreDisplay.innerHTML = 'You Win!'
+        clearInterval(timerId)
+        document.removeEventListener('keydown', moveUser)
+      }
+    }
+  }
